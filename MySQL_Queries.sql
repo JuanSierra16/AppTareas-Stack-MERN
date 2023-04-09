@@ -12,7 +12,7 @@ describe tasks;
 select * from tasks;
 describe users;
 select * from users;
-ALTER TABLE users AUTO_INCREMENT = 1;
+ALTER TABLE tasks AUTO_INCREMENT = 1;
 CREATE TABLE users (
 	user_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -23,7 +23,7 @@ ALTER TABLE tasks ADD COLUMN user_id INT NOT NULL;
 ALTER TABLE tasks ADD CONSTRAINT fk_tasks_users FOREIGN KEY (user_id) REFERENCES users(user_id);
 SELECT * FROM tasks WHERE user_id NOT IN (SELECT user_id FROM users);
 UPDATE tasks SET user_id = NULL WHERE user_id = 0;
-DELETE FROM tasks WHERE id = 2;
+DELETE FROM tasks WHERE id = 1;
 
 /*Consultar las tareas de un usuario*/
 SELECT t.id, t.title, t.description, t.done, t.createdAt
@@ -47,3 +47,5 @@ UPDATE tareas SET title = 'Nueva tarea' WHERE id = 1 AND user_id = 3;
 /*Eliminar una tarea de un usuario*/
 DELETE FROM tareas WHERE id = 1 AND user_id = 3;
 
+ALTER TABLE tasks MODIFY COLUMN user_id INT DEFAULT NULL;
+SELECT * FROM users WHERE email = "juanjose.sierra@utp.edu.co";

@@ -12,7 +12,7 @@ export const getUsers = async(req,res) => {
 
 export const getUser = async(req,res) => {
     try{
-        const [result] = await pool.query("SELECT * FROM users WHERE user_id = ?", [req.params.id]);
+        const [result] = await pool.query("SELECT * FROM users WHERE email = ?", [req.params.email]);
     
         if(result.length === 0){
             return res.status(404).json({message: "User not found"})

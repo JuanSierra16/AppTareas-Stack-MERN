@@ -26,15 +26,17 @@ export const getTask = async(req,res) => {
 
 export const createTask = async(req,res) => {
     try{
-        const {title, description} = req.body;
-        const [result] = await pool.query('INSERT INTO tasks(title, description) VALUES (?, ?)',[
+        const {title, description, user_id} = req.body;
+        const [result] = await pool.query('INSERT INTO tasks(title, description, user_id) VALUES (?, ?, ?)',[
             title,
-            description//Entonces al crear la tarea desde el cliente tambien se le envia al servidor el id del usuario para que lo guarde en la tabla de task como la clave foranea que ya definimos
+            description,//Entonces al crear la tarea desde el cliente tambien se le envia al servidor el id del usuario para que lo guarde en la tabla de task como la clave foranea que ya definimos
+            user_id
         ]);
         res.json({
             id: result.insertId,
             title,
-            description
+            description,
+            user_id
         });
     }
     catch(error){
