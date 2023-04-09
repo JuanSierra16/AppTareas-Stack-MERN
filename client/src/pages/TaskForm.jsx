@@ -1,14 +1,14 @@
 import {Form, Formik} from 'formik'
 import {createTaskRequest} from '../api/task.api'
 
-function TaskForm(){
+function TaskForm({ userId }){
     return(
         <div>
             <Formik
                 initialValues={{
                     title: "",
                     description: "",
-                    user_id: 1, //Aqui va el id del usuario
+                    user_id: userId, //Aqui va el id del usuario
                 }}
                 onSubmit={async(values, actions) => {
                     console.log(values)

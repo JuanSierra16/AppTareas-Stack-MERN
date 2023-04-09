@@ -1,7 +1,7 @@
 import {Form, Formik} from 'formik'
 import {getUserRequest} from '../api/user.api'
 
-function LoginForm(){
+function LoginForm({onLogin}){
     return(
         <div>
             <Formik
@@ -18,7 +18,7 @@ function LoginForm(){
                         //window.location.href = '/'; // redirige al usuario a la página de inicio después de enviar el formulario
                         if(values.password === response.data.password){
                             console.log(response.data.user_id)
-                            //puedo exportar el user_id desde aqui?
+                            onLogin(response.data.user_id); // llama a la función onLogin
                             alert('bienvenido')
                         }
                         else{
