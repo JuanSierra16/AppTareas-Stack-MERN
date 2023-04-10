@@ -49,3 +49,5 @@ DELETE FROM tareas WHERE id = 1 AND user_id = 3;
 
 ALTER TABLE tasks MODIFY COLUMN user_id INT DEFAULT NULL;
 SELECT * FROM users WHERE email = "juanjose.sierra@utp.edu.co";
+
+SELECT * FROM tasks WHERE user_id = 1 ORDER BY createAt ASC;
