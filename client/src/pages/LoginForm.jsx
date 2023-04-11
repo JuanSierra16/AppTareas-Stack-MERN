@@ -26,7 +26,7 @@ function LoginForm({onLogin}){
                             setTimeout(() => {
                                 console.log("Two seconds have passed");
                                 //window.location.href = '/'; // redirige al usuario a la página de inicio después de enviar el formulario
-                                navigate('/')
+                                navigate('/taskspage')
                             }, 300);
                         }
                         else{

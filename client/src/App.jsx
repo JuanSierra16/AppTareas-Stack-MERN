@@ -4,11 +4,11 @@ import './App.css'
 import TaskPage from './pages/TasksPage'
 import TaskForm from './pages/TaskForm'
 import NotFound from './pages/NotFound'
+import { TaskContextProvider } from './context/TaskProvider'
 
 import Navbar from './components/Navbar'
 import UserForm from './pages/UserForm'
 import LoginForm from './pages/LoginForm'
-
 
 function App() {
   const [userId, setUserId] = useState(null); // estado para almacenar el userId
@@ -18,16 +18,16 @@ function App() {
   };
 
   return (
-    <>
+    <TaskContextProvider userId={userId}>
       <Navbar />
       <Routes>
-        <Route path='login' element={<LoginForm onLogin={handleLogin}/>} />
-        <Route path='register' element={<UserForm/>} />
-        <Route path='/' element={<TaskPage userId={userId}/>} />/*Pagina de entrada
+        <Route path='/' element={<LoginForm onLogin={handleLogin}/>} />
+        <Route path='/register' element={<UserForm />} />
+        <Route path='/taskspage' element={<TaskPage />} />/*Pagina de entrada
         <Route path='/new' element={<TaskForm userId={userId}/>} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
-    </>
+    </TaskContextProvider>
   )
 }
 
