@@ -1,5 +1,5 @@
 import { useContext, useState} from "react";
-import { getTasksRequest, deleteTaskRequest, createTaskRequest } from "../api/task.api";
+import { getTasksRequest, deleteTaskRequest, createTaskRequest, getTaskRequest, updateTaskRequest, toggleTaskDoneRequest } from "../api/task.api";
 import { TaskContext } from "./TaskContext";
 
 export const useTasks = () => {
@@ -44,9 +44,40 @@ export const TaskContextProvider = ({userId, children}) => {
             console.error(error)
         }
     }
+
+    const getTask = async(id) => {
+        try{
+            const response = await getTaskRequest(id)
+            return response.data
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
+
+    const updateTask = async(id, newFields) => {
+        try{
+            const response = await updateTaskRequest(id, newFields)
+            console.log(response)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    const toggleTaskDone = async(id) => {
+        try{
+            const taskFound = tasks.find((task) => task.id === id)
+            await toggleTaskDoneRequest(id, taskFound.done === 0 ? true : false)
+            setTasks(tasks.map((task) => (task.id === id ? {... task, done: !task.done } : task)))
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
     
     return(
-        <TaskContext.Provider value={{tasks, loadTasks, userId, deleteTask, createTask}}>
+        <TaskContext.Provider value={{tasks, loadTasks, userId, deleteTask, createTask, getTask, updateTask, toggleTaskDone}}>
             {children}
         </TaskContext.Provider>
     )

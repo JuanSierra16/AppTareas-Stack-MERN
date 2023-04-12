@@ -25,6 +25,7 @@ function App() {
         <Route path='/register' element={<UserForm />} />
         <Route path='/taskspage' element={<TaskPage />} />/*Pagina de entrada
         <Route path='/new' element={<TaskForm userId={userId}/>} />
+        <Route path='/edit/:id' element={<TaskForm userId={userId}/>} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </TaskContextProvider>
