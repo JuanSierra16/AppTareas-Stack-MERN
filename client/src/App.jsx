@@ -32,7 +32,7 @@ function App() {
         <TaskContextProvider userId={userId}>
         <Routes>
           <Route path='/' element={<LoginForm onLogin={handleLogin}/>} />
-          <Route path='/register' element={<UserForm />} />
+          <Route path='/register' element={<UserForm onLogin={handleLogin}/>} />
           <Route path='/taskspage' element={<TaskPage />} />/*Pagina de entrada
           <Route path='/new' element={<TaskForm userId={userId}/>} />
           <Route path='/edit/:id' element={<TaskForm userId={userId}/>} />

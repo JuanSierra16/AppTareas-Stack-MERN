@@ -46,6 +46,7 @@ UPDATE tareas SET title = 'Nueva tarea' WHERE id = 1 AND user_id = 3;
 
 /*Eliminar una tarea de un usuario*/
 DELETE FROM tareas WHERE id = 1 AND user_id = 3;
+DELETE FROM tareas WHERE id = 32;
 
 ALTER TABLE tasks MODIFY COLUMN user_id INT DEFAULT NULL;
 SELECT * FROM users WHERE email = "juanjose.sierra@utp.edu.co";

@@ -48,10 +48,10 @@ function TaskForm({ userId }){
             {({handleChange, handleSubmit, values, isSubmitting}) => (
                 <Form onSubmit={handleSubmit} className='bg-slate-300 max-w-sm rounded-md p-4 mx-auto mt-10'>
                     <h1 className='text-xl font-bold uppercase text-center'>{params.id ? "Edit Task" : "New Task"}</h1>
-                    <label className='block'>title</label>
+                    <label className='block'>Title</label>
                     <input type="text" name='title' placeholder='Write a title' onChange={handleChange} value={values.title} className='px-2 py-1 rounded-sm w-full'/>
 
-                    <label className='block'>description</label>
+                    <label className='block'>Description</label>
                     <textarea name="description" rows="3" placeholder='Write a description' onChange={handleChange} value={values.description} className='px-2 py-1 rounded-sm w-full'></textarea>
 
                     <button type='submit' disabled={isSubmitting} className='block bg-indigo-500 px-2 py-1 text-white w-full rounded-md'>

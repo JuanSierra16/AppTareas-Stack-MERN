@@ -1,8 +1,12 @@
 import {Form, Formik} from 'formik'
 import {createUserRequest} from '../api/user.api'
+import { useNavigate} from 'react-router-dom'
 import { Link } from "react-router-dom"
 
-function UserForm(){
+function UserForm({onLogin}){
+
+    const navigate = useNavigate()
+
     return(
         <div>
             <Formik
@@ -16,8 +20,10 @@ function UserForm(){
                     try{
                         const response = await createUserRequest(values)
                         console.log(response)
+                        onLogin(response.data.id);
                         actions.resetForm()
-                        window.location.href = '/'; // redirige al usuario a la página de inicio después de enviar el formulario
+                        /* window.location.href = '/'; */ // redirige al usuario a la página de inicio después de enviar el formulario
+                        navigate('/taskspage')
                     }
                     catch(error){
                         console.error(error)
