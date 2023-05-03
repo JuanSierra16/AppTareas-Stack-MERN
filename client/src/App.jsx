@@ -11,16 +11,23 @@ import UserForm from './pages/UserForm'
 import LoginForm from './pages/LoginForm'
 
 function App() {
-  const [userId, setUserId] = useState(null); // estado para almacenar el userId
+  const [userId, setUserId] = useState(localStorage.getItem('userId')); // obtiene el userId del localStorage
   const location = useLocation(); // obtenemos la ruta actual
 
   const handleLogin = (id) => {
     setUserId(id); // actualiza el userId cuando se inicie sesión
+    localStorage.setItem('userId', id); // guarda el userId en el localStorage
   };
+
+  const handleLogout = () => {
+    setUserId(null); // actualiza el userId a null
+    localStorage.removeItem('userId'); // elimina el userId del localStorage
+  };
+  
 
   return (
     <div className='bg-zinc-900 h-screen'>
-      {location.pathname === '/' || location.pathname === '/register' ? ( null ) : <Navbar />}
+      {location.pathname === '/' || location.pathname === '/register' ? ( null ) : <Navbar onLogout={handleLogout}/>}
       <div className="container mx-auto py-4 px-20">
         <TaskContextProvider userId={userId}>
         <Routes>
