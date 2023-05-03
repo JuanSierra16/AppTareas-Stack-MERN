@@ -23,10 +23,8 @@ function LoginForm({onLogin}){
                         if(values.password === response.data.password){
                             console.log(response.data.user_id)
                             onLogin(response.data.user_id); // llama a la función onLogin
-                            /* alert('bienvenido') */
                             setTimeout(() => {
                                 console.log("Two seconds have passed");
-                                //window.location.href = '/'; // redirige al usuario a la página de inicio después de enviar el formulario
                                 navigate('/taskspage')
                             }, 300);
                         }
@@ -84,7 +82,7 @@ function LoginForm({onLogin}){
                 </button>
                 <p className='text-white mt-6'>
                   Don't have an account?
-                  <Link to="/register" className="ml-3 text-sky-400">Sing up</Link>
+                  <Link to="/register" className="ml-3 text-sky-400">Sign up</Link>
                 </p>
               </Form>
             )}  
