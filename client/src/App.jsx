@@ -1,4 +1,4 @@
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, useLocation} from 'react-router-dom'
 import { useState } from 'react'
 import './App.css'
 import TaskPage from './pages/TasksPage'
@@ -12,6 +12,7 @@ import LoginForm from './pages/LoginForm'
 
 function App() {
   const [userId, setUserId] = useState(null); // estado para almacenar el userId
+  const location = useLocation(); // obtenemos la ruta actual
 
   const handleLogin = (id) => {
     setUserId(id); // actualiza el userId cuando se inicie sesión
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <div className='bg-zinc-900 h-screen'>
-      <Navbar />
+      {location.pathname === '/' || location.pathname === '/register' ? ( null ) : <Navbar />}
       <div className="container mx-auto py-4 px-20">
         <TaskContextProvider userId={userId}>
         <Routes>
