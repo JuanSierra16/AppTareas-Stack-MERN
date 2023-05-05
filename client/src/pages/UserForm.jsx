@@ -22,7 +22,6 @@ function UserForm({onLogin}){
                         console.log(response)
                         onLogin(response.data.id);
                         actions.resetForm()
-                        /* window.location.href = '/'; */ // redirige al usuario a la página de inicio después de enviar el formulario
                         navigate('/taskspage')
                     }
                     catch(error){

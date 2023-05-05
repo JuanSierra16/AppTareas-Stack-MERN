@@ -1,5 +1,5 @@
 import {Form, Formik} from 'formik'
-import {getUserRequest} from '../api/user.api'
+import {getUserRequest, login } from '../api/user.api'
 import { useNavigate} from 'react-router-dom'
 import { Link } from "react-router-dom"
 
@@ -17,16 +17,13 @@ function LoginForm({onLogin}){
                 onSubmit={async(values, actions) => {
                     console.log(values)
                     try{
-                        const response = await getUserRequest(values.email)
+                        const response = await login(values.email, values.password)
                         console.log(response)
                         actions.resetForm()
-                        if(values.password === response.data.password){
+                        if(response.status===200){
                             console.log(response.data.user_id)
                             onLogin(response.data.user_id); // llama a la función onLogin
-                            setTimeout(() => {
-                                console.log("Two seconds have passed");
-                                navigate('/taskspage')
-                            }, 300);
+                            navigate('/taskspage')
                         }
                         else{
                             alert('Usuario y/o contraseña incorrectos')

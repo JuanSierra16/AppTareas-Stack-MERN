@@ -46,9 +46,20 @@ UPDATE tareas SET title = 'Nueva tarea' WHERE id = 1 AND user_id = 3;
 
 /*Eliminar una tarea de un usuario*/
 DELETE FROM tareas WHERE id = 1 AND user_id = 3;
-DELETE FROM tareas WHERE id = 32;
+DELETE FROM tasks WHERE id = 15;
+DELETE FROM users WHERE user_id = 21;
 
 ALTER TABLE tasks MODIFY COLUMN user_id INT DEFAULT NULL;
 SELECT * FROM users WHERE email = "juanjose.sierra@utp.edu.co";
 
 SELECT * FROM tasks WHERE user_id = 1 ORDER BY createAt ASC;
+
+/*Eliminar todos los registros de una tabla y resetear el autoincremento, no se puede deshacer*/
+TRUNCATE TABLE users;
+
+-- Eliminar todos los registros de la tabla
+DELETE FROM users;
+
+-- Restablecer el valor del ID autoincremental a 1
+ALTER TABLE users AUTO_INCREMENT = 1;
+
